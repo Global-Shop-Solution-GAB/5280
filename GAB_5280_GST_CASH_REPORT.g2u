@@ -1,0 +1,653 @@
+Program.Sub.ScreenSU.Start
+Gui.frmCash..Create
+Gui.frmCash..Caption("GST Cash Receipts Report")
+Gui.frmCash..Size(8025,3525)
+Gui.frmCash..MinX(0)
+Gui.frmCash..MinY(0)
+Gui.frmCash..Position(0,0)
+Gui.frmCash..BackColor(-2147483633)
+Gui.frmCash..MousePointer(0)
+Gui.frmCash..Event(UnLoad,frmCash_UnLoad)
+Gui.frmCash.txtGL.Create(TextBox,"",True,1845,300,0,225,585,True,0,"Arial",8,-2147483643,1)
+Gui.frmCash.txtGSTOT.Create(TextBox,"",True,1845,300,0,4980,585,True,0,"Arial",8,-2147483643,1)
+Gui.frmCash.txtGSTIN.Create(TextBox,"",True,1845,300,0,2595,585,True,0,"Arial",8,-2147483643,1)
+Gui.frmCash.lbl1.Create(Label,"Bank Account",True,1560,255,0,195,345,True,0,"Arial",8,-2147483633,0)
+Gui.frmCash.lbl2.Create(Label,"GST Input Account",True,1935,255,0,2580,345,True,0,"Arial",8,-2147483633,0)
+Gui.frmCash.lbl3.Create(Label,"GST Output Account",True,1935,255,0,4980,345,True,0,"Arial",8,-2147483633,0)
+Gui.frmCash.cmdProcess.Create(Button)
+Gui.frmCash.cmdProcess.Size(1440,375)
+Gui.frmCash.cmdProcess.Position(2355,1710)
+Gui.frmCash.cmdProcess.Caption("Process")
+Gui.frmCash.cmdProcess.Event(Click,cmdProcess_Click)
+Gui.frmCash.cmdBrwGL.Create(Button)
+Gui.frmCash.cmdBrwGL.Size(435,375)
+Gui.frmCash.cmdBrwGL.Position(2100,555)
+Gui.frmCash.cmdBrwGL.Caption("^")
+Gui.frmCash.cmdBrwGL.Event(Click,cmdBrwGL_Click)
+Gui.frmCash.cmdBrwGI.Create(Button)
+Gui.frmCash.cmdBrwGI.Size(435,375)
+Gui.frmCash.cmdBrwGI.Position(4485,555)
+Gui.frmCash.cmdBrwGI.Caption("^")
+Gui.frmCash.cmdBrwGI.Event(Click,cmdBrwGI_Click)
+Gui.frmCash.cmdBrwGO.Create(Button)
+Gui.frmCash.cmdBrwGO.Size(435,375)
+Gui.frmCash.cmdBrwGO.Position(6915,555)
+Gui.frmCash.cmdBrwGO.Caption("^")
+Gui.frmCash.cmdBrwGO.Event(Click,cmdBrwGO_Click)
+Gui.frmCash.cmdSave.Create(Button)
+Gui.frmCash.cmdSave.Size(1845,375)
+Gui.frmCash.cmdSave.Position(225,1695)
+Gui.frmCash.cmdSave.Caption("Save Settings")
+Gui.frmCash.cmdSave.Event(Click,cmdSave_Click)
+Gui.frmCash.dtpSta.Create(DatePicker)
+Gui.frmCash.dtpSta.Size(1935,285)
+Gui.frmCash.dtpSta.Position(240,1230)
+Gui.frmCash.dtpEnd.Create(DatePicker)
+Gui.frmCash.dtpEnd.Size(1935,285)
+Gui.frmCash.dtpEnd.Position(2385,1230)
+Gui.frmSummary..Create
+Gui.frmSummary..Caption("GST Cash Summary")
+Gui.frmSummary..Size(15360,14430)
+Gui.frmSummary..MinX(0)
+Gui.frmSummary..MinY(0)
+Gui.frmSummary..Position(0,0)
+Gui.frmSummary..BackColor(-2147483633)
+Gui.frmSummary..MousePointer(0)
+Gui.frmSummary..Event(UnLoad,frmSummary_UnLoad)
+Gui.frmSummary.gsgcCash.Create(GsGridControl)
+Gui.frmSummary.gsgcCash.Size(14910,3285)
+Gui.frmSummary.gsgcCash.Position(120,1065)
+Gui.frmSummary.gsgcPay.Create(GsGridControl)
+Gui.frmSummary.gsgcPay.Size(14910,3285)
+Gui.frmSummary.gsgcPay.Position(105,5025)
+Gui.frmSummary.gsgcJrnl.Create(GsGridControl)
+Gui.frmSummary.gsgcJrnl.Size(14910,3285)
+Gui.frmSummary.gsgcJrnl.Position(105,8985)
+Gui.frmSummary.txtTotalCash.Create(TextBox,"",True,2415,300,0,12570,4665,True,1,"Arial",8,-2147483643,1)
+Gui.frmSummary.txtTotalPay.Create(TextBox,"",True,2415,300,0,12570,8625,True,1,"Arial",8,-2147483643,1)
+Gui.frmSummary.txtTotalJrnl.Create(TextBox,"",True,2415,300,0,12570,12540,True,1,"Arial",8,-2147483643,1)
+Gui.frmSummary.txtStartBal.Create(TextBox,"",True,2265,300,0,12570,615,True,1,"Arial",8,-2147483643,1)
+Gui.frmSummary.txtEndBal.Create(TextBox,"",True,2415,300,0,12570,13140,True,1,"Arial",8,-2147483643,1)
+Gui.frmSummary.lblStartBal.Create(Label,"Starting Bank Balance:",True,2280,255,0,12570,375,True,0,"Arial",8,-2147483633,0)
+Gui.frmSummary.lblStartDate.Create(Label,"",True,2280,255,0,12570,120,True,0,"Arial",8,-2147483633,0)
+Gui.frmSummary.lblTotalCash.Create(Label,"Total Cash Receipts:",True,2280,255,0,12570,4470,True,0,"Arial",8,-2147483633,0)
+Gui.frmSummary.lblTotalPay.Create(Label,"Total Payments:",True,2280,255,0,12570,8415,True,0,"Arial",8,-2147483633,0)
+Gui.frmSummary.lblTotalJrnl.Create(Label,"Total Journals:",True,2280,255,0,12570,12345,True,0,"Arial",8,-2147483633,0)
+Gui.frmSummary.lblEndBal.Create(Label,"Ending Bank Balance:",True,2280,255,0,12570,12930,True,0,"Arial",8,-2147483633,0)
+Gui.frmSummary.lblEndDate.Create(Label,"",True,2280,255,0,12570,12900,True,0,"Arial",8,-2147483633,0)
+Gui.frmSummary.picGSSLogo.Create(PictureBox)
+Gui.frmSummary.picGSSLogo.Size(4125,960)
+Gui.frmSummary.picGSSLogo.Position(4995,30)
+Gui.frmSummary.cmdExportAll.Create(Button)
+Gui.frmSummary.cmdExportAll.Size(2445,375)
+Gui.frmSummary.cmdExportAll.Position(12555,13470)
+Gui.frmSummary.cmdExportAll.Caption("Export All")
+Gui.frmSummary.cmdExportAll.Event(Click,cmdExportAll_Click)
+Program.Sub.ScreenSU.End
+
+Program.Sub.Preflight.Start
+Program.Sub.Preflight.End
+
+Program.Sub.Main.Start
+v.Local.sCacheFile.Declare(string)
+v.Local.bCacheFile.Declare(Boolean)
+f.Intrinsic.String.Concat(v.Caller.GasDir,"\",v.Caller.CompanyCode,"_",v.Caller.User,"_GST_Cash.xml",v.Local.sCacheFile)
+f.Intrinsic.File.Exists(v.Local.sCacheFile,v.Local.bCacheFile)
+f.Intrinsic.Control.If(v.Local.bCacheFile)
+	f.Data.DataTable.CreateFromXML("dtSet",v.Local.sCacheFile,true)
+	
+	gui.frmCash.txtGL.Text(v.DataTable.dtSet(0).Bank!Fieldval)
+	gui.frmCash.txtGSTIN.Text(v.DataTable.dtSet(0).TaxI!fieldval)
+	gui.frmCash.txtGSTOT.Text(v.DataTable.dtSet(0).TaxO!fieldval)
+f.Intrinsic.Control.EndIf
+f.ODBC.Connection!con.openconnection(v.Ambient.PDSN,v.Ambient.PUser,v.Ambient.PPass)
+f.Intrinsic.UI.SetBrowserHotTypeAhead(true)
+gui.frmCash..Show
+Program.Sub.Main.End
+
+Program.Sub.cmdProcess_Click.Start
+gui.frmCash..Visible(false)
+f.Intrinsic.UI.InvokeWaitDialog("Loading Records")
+'Create data table for all cash batches
+v.Local.i.Declare(long)
+v.Local.j.Declare(long)
+v.Local.lLastR.Declare(long)
+v.Local.sRet.Declare(string)
+v.Local.ssql.Declare(string)
+v.Local.sLeft.Declare(string)
+v.Local.sGLBnk.Declare(string)
+v.Local.sGSTIn.Declare(string)
+v.Local.sGSTOt.Declare(string)
+v.Local.sFormt.Declare(string)
+v.Local.fFYSBL.Declare(float)
+v.Local.fNetBL.Declare(float)
+v.Local.fStaBL.Declare(Float)
+v.local.fRunBL.Declare(float)
+v.Local.dStart.Declare(date)
+v.Local.dEndin.Declare(date)
+v.Local.sGLBnk.Set(v.Screen.frmCash!txtGL.text)
+v.Local.sGSTIn.Set(v.Screen.frmCash!txtGSTIN.text)
+v.Local.sGSTOt.Set(v.Screen.frmCash!txtGSTOT.text)
+v.Local.dStart.Set(v.Screen.frmCash!dtpSta.Value)
+v.Local.dEndin.Set(v.Screen.frmCash!dtpEnd.Value)
+
+'Get Banks beginning balance
+f.Intrinsic.String.Build("select beg_bal from GL_BALANCES where acct='{0}' and type='S'",v.Local.sGLBnk,v.Local.ssql)
+f.ODBC.Connection!con.executeandreturn(v.Local.ssql,v.Local.fFYSBL)
+'Get the net change up to this point
+f.Intrinsic.String.Build("select sum(amount_cmpny) from v_gl_detail where gl_number='{0}' and post_date_sql<'{1}'",v.Local.sGLBnk,v.Local.dStart.PervasiveDate,v.Local.ssql)
+f.ODBC.Connection!con.executeandreturn(v.Local.ssql,v.Local.fNetBL)
+f.Intrinsic.Math.Add(v.Local.fFYSBL,v.Local.fNetBL,v.Local.fStaBL)
+
+
+'Create the AR Items
+f.Data.DataTable.Create("dtARItems",true)
+f.Data.DataTable.AddColumn("dtARItems","Batch","String")
+f.Data.DataTable.AddColumn("dtARItems","Notes","String")
+f.Data.DataTable.AddColumn("dtARItems","PostDate","Date")
+f.Data.DataTable.AddColumn("dtARItems","TotalBatchAmt","Float")
+f.Data.DataTable.AddColumn("dtARItems","CashApplied","Float")
+f.Data.DataTable.AddColumn("dtARItems","Invoice","String")
+f.Data.DataTable.AddColumn("dtARItems","Customer","String")
+f.Data.DataTable.AddColumn("dtARItems","DateInvoice","Date")
+f.Data.DataTable.AddColumn("dtARItems","Gross","Float")
+f.Data.DataTable.AddColumn("dtARItems","Tax","Float")
+f.Data.DataTable.AddColumn("dtARItems","Net","Float")
+f.Data.DataTable.AddColumn("dtARItems","rtTotalCash","Float")
+
+'Create the AP Items
+f.Data.DataTable.Create("dtAPItems",true)
+f.Data.DataTable.AddColumn("dtAPItems","Batch","String")
+f.Data.DataTable.AddColumn("dtAPItems","Notes","String")
+f.Data.DataTable.AddColumn("dtAPItems","PostDate","Date")
+f.Data.DataTable.AddColumn("dtAPItems","TotalBatchAmt","Float")
+f.Data.DataTable.AddColumn("dtAPItems","CashApplied","Float")
+f.Data.DataTable.AddColumn("dtAPItems","Invoice","String")
+f.Data.DataTable.AddColumn("dtAPItems","Vendor","String")
+f.Data.DataTable.AddColumn("dtAPItems","DateInvoice","Date")
+f.Data.DataTable.AddColumn("dtAPItems","Gross","Float")
+f.Data.DataTable.AddColumn("dtAPItems","Tax","Float")
+f.Data.DataTable.AddColumn("dtAPItems","Net","Float")
+f.Data.DataTable.AddColumn("dtAPItems","rtTotalCash","Float")
+
+'Create the JE Items
+f.Data.DataTable.Create("dtJEItems",true)
+f.Data.DataTable.AddColumn("dtJEItems","Batch","String")
+f.Data.DataTable.AddColumn("dtJEItems","Notes","String")
+f.Data.DataTable.AddColumn("dtJEItems","PostDate","Date")
+f.Data.DataTable.AddColumn("dtJEItems","TotalBatchAmt","Float")
+f.Data.DataTable.AddColumn("dtJEItems","Reference","String")
+f.Data.DataTable.AddColumn("dtJEItems","Description","String")
+f.Data.DataTable.AddColumn("dtJEItems","Gross","Float")
+f.Data.DataTable.AddColumn("dtJEItems","Tax","Float")
+f.Data.DataTable.AddColumn("dtJEItems","Net","Float")
+f.Data.DataTable.AddColumn("dtJEItems","rtTotalCash","Float")
+
+f.Intrinsic.String.Build("select DISTINCT BATCH, POST_DATE_SQL,sum(AMOUNT_CMPNY) as 'AMOUNT_CMPNY' from v_GL_DETAIL where GL_NUMBER='{0}' AND POST_DATE_SQL>='{1}' AND POST_DATE_SQL<='{2}' group by batch, post_date_sql",v.Local.sGLBnk.Trim,v.Local.dStart.PervasiveDate,v.Local.dEndin.PervasiveDate,v.Local.ssql)
+f.Data.DataTable.CreateFromSQL("dtGLRec","con",v.Local.ssql)
+f.Intrinsic.Control.For(v.Local.i,0,v.DataTable.dtGLRec.RowCount--,1)
+	f.Intrinsic.String.Left(v.DataTable.dtGLRec(v.Local.i).BATCH!FIELDVALTRIM,1,v.Local.sLeft)
+	
+	'Cash Receipt
+	f.Intrinsic.Control.If(v.Local.sLeft,=,"R")
+		f.Intrinsic.Control.CallSub(getAR,"Batch",v.DataTable.dtGLRec(v.Local.i).BATCH!Fieldvaltrim,"PostDate",v.DataTable.dtGLRec(v.Local.i).POST_DATE_SQL!FIELDVAL,"TotalBatchAmt",v.DataTable.dtGLRec(v.Local.i).AMOUNT_CMPNY!FIELDVAL)
+	'Vendor Payment
+	f.Intrinsic.Control.ElseIf(v.Local.sLeft,=,"A")
+		f.Intrinsic.Control.CallSub(getAP,"Batch",v.DataTable.dtGLRec(v.Local.i).BATCH!Fieldvaltrim,"PostDate",v.DataTable.dtGLRec(v.Local.i).POST_DATE_SQL!FIELDVAL,"TotalBatchAmt",v.DataTable.dtGLRec(v.Local.i).AMOUNT_CMPNY!FIELDVAL)
+	'Normal Journal
+	f.Intrinsic.Control.Else
+		f.Intrinsic.Control.CallSub(getJE,"Batch",v.DataTable.dtGLRec(v.Local.i).BATCH!Fieldvaltrim,"PostDate",v.DataTable.dtGLRec(v.Local.i).POST_DATE_SQL!FIELDVAL,"TotalBatchAmt",v.DataTable.dtGLRec(v.Local.i).AMOUNT_CMPNY!FIELDVAL,"Bank",v.Local.sGLBnk,"GSTIn",v.Local.sGSTIn,"GSTOt",v.Local.sGSTOt)	
+	f.Intrinsic.Control.EndIf
+f.Intrinsic.Control.Next(v.Local.i)
+
+'Prepare the screen
+'Starting Balance
+F.Intrinsic.String.Format(v.Local.fStaBL,"###,###,###.00",V.Local.sFormt)
+gui.frmSummary.txtStartBal.Text(v.Local.sFormt)
+'Cash Receipts
+v.Local.lLastR.Set(v.DataTable.dtARItems.RowCount--)
+f.Intrinsic.Control.If(v.Local.lLastR,<>,-1)
+	F.Intrinsic.String.Format(v.DataTable.dtARItems(v.Local.lLastR).rtTotalCash!FieldvalFloat,"###,###,###.00",V.Local.sFormt)
+	gui.frmSummary.txtTotalCash.Text(v.Local.sFormt)
+f.Intrinsic.Control.Else
+	gui.frmSummary.txtTotalCash.Text(0)
+f.Intrinsic.Control.EndIf
+f.Intrinsic.Math.Add(v.Local.fStaBL,v.Screen.frmSummary!txtTotalCash.text,v.Local.fRunBL)
+'Payments
+v.Local.lLastR.Set(v.DataTable.dtAPItems.RowCount--)
+f.Intrinsic.Control.If(v.Local.lLastR,<>,-1)
+	F.Intrinsic.String.Format(v.DataTable.dtAPItems(v.Local.lLastR).rtTotalCash!FieldvalFloat,"###,###,###.00",V.Local.sFormt)
+	gui.frmSummary.txtTotalPay.Text(v.Local.sFormt)
+f.Intrinsic.Control.Else
+	gui.frmSummary.txtTotalPay.Text(0)
+f.Intrinsic.Control.EndIf
+f.Intrinsic.Math.Add(v.Local.fRunBL,v.Screen.frmSummary!txtTotalPay.text,v.Local.fRunBL)
+'Journals
+v.Local.lLastR.Set(v.DataTable.dtJEItems.RowCount--)
+f.Intrinsic.Control.If(v.Local.lLastR,<>,-1)
+	F.Intrinsic.String.Format(v.DataTable.dtJEItems(v.Local.lLastR).rtTotalCash!FieldvalFloat,"###,###,###.00",V.Local.sFormt)
+	gui.frmSummary.txtTotalJrnl.Text(v.Local.sFormt)
+f.Intrinsic.Control.Else
+	gui.frmSummary.txtTotalJrnl.Text(0)
+f.Intrinsic.Control.EndIf
+f.Intrinsic.Math.Add(v.Local.fRunBL,v.Screen.frmSummary!txtTotalJrnl.text,v.Local.fRunBL)
+F.Intrinsic.String.Format(v.Local.fRunBL,"###,###,###.00",V.Local.sFormt)
+gui.frmSummary.txtEndBal.Text(v.Local.sFormt)
+
+gui.frmSummary.gsgcCash.DataSource("dtARItems")
+gui.frmSummary.gsgcCash.AddGridviewFromDatatable("gvAR","dtARItems")
+gui.frmSummary.gsgcPay.DataSource("dtAPItems")
+gui.frmSummary.gsgcPay.AddGridviewFromDatatable("gvAP","dtAPItems")
+gui.frmSummary.gsgcJrnl.DataSource("dtJEItems")
+gui.frmSummary.gsgcJrnl.AddGridviewFromDatatable("gvJE","dtJEItems")
+
+f.Intrinsic.Control.CallSub(setProperties)
+
+f.Intrinsic.UI.CloseWaitDialog
+gui.frmSummary..Show
+
+Program.Sub.cmdProcess_Click.End
+
+Program.Sub.setProperties.Start
+v.Local.sIcon.Declare(string)
+v.Local.sGssLogo.Declare(string)
+F.Intrinsic.String.Build("{0}\ART\gss2.ico",V.Caller.GlobalDir,v.Local.sIcon)		
+F.Intrinsic.String.Build("{0}\ART\GAB_GSS_Logo_Green_Dash.png",V.Caller.GlobalDir,V.Local.sGssLogo)
+Gui.frmSummary..Icon(V.Local.sIcon)
+Gui.frmSummary.picGSSLogo.Picture(V.Local.sGssLogo)
+gui.frmSummary.picGSSLogo.anchor(1)
+gui.frmSummary.gsgcCash.anchor(13)
+gui.frmSummary.gsgcPay.anchor(13)
+gui.frmSummary.gsgcJrnl.anchor(13)
+gui.frmSummary.lblStartDate.anchor(9)
+gui.frmSummary.lblEndDate.anchor(11)
+gui.frmSummary.lblTotalPay.anchor(11)
+gui.frmSummary.lblTotalJrnl.anchor(11)
+gui.frmSummary.lblTotalCash.anchor(11)
+gui.frmSummary.lblStartBal.anchor(9)
+gui.frmSummary.lblEndBal.anchor(11)
+gui.frmSummary.txtStartBal.anchor(9)
+gui.frmSummary.txtTotalCash.anchor(11)
+gui.frmSummary.txtTotalPay.anchor(11)
+gui.frmSummary.txtTotalJrnl.anchor(11)
+gui.frmSummary.txtEndBal.anchor(11)
+gui.frmSummary.cmdExportAll.anchor(9)
+'Start with AR
+'Set misc. options
+gui.frmSummary.gsgcCash.setgridviewproperty("gvAR","ReadOnly",True)
+gui.frmSummary.gsgcCash.setgridviewproperty("gvAR","Editable",False)
+'Custom Numeric
+Gui.frmSummary.gsgcCash.SetColumnProperty("gvAR","TotalBatchAmt","DisplayCustomNumeric","#,###,###,##0.00")
+Gui.frmSummary.gsgcCash.SetColumnProperty("gvAR","CashApplied","DisplayCustomNumeric","#,###,###,##0.00")
+Gui.frmSummary.gsgcCash.SetColumnProperty("gvAR","Gross","DisplayCustomNumeric","#,###,###,##0.00")
+Gui.frmSummary.gsgcCash.SetColumnProperty("gvAR","Tax","DisplayCustomNumeric","#,###,###,##0.00")	
+Gui.frmSummary.gsgcCash.SetColumnProperty("gvAR","Net","DisplayCustomNumeric","#,###,###,##0.00")	
+'Custom Date
+gui.frmSummary.gsgcCash.SetColumnProperty("gvAR","DateInvoice","DisplayCustomDatetime","d")
+gui.frmSummary.gsgcCash.SetColumnProperty("gvAR","PostDate","DisplayCustomDatetime","d")
+'Bold
+gui.frmSummary.gsgcCash.SetColumnProperty("gvAR","Batch","HeaderFontBold","True")
+gui.frmSummary.gsgcCash.SetColumnProperty("gvAR","PostDate","HeaderFontBold","True")
+gui.frmSummary.gsgcCash.SetColumnProperty("gvAR","TotalBatchAmt","HeaderFontBold","True")
+gui.frmSummary.gsgcCash.SetColumnProperty("gvAR","CashApplied","HeaderFontBold","True")
+gui.frmSummary.gsgcCash.SetColumnProperty("gvAR","Invoice","HeaderFontBold","True")
+gui.frmSummary.gsgcCash.SetColumnProperty("gvAR","Customer","HeaderFontBold","True")
+gui.frmSummary.gsgcCash.SetColumnProperty("gvAR","DateInvoice","HeaderFontBold","True")
+gui.frmSummary.gsgcCash.SetColumnProperty("gvAR","Gross","HeaderFontBold","True")
+gui.frmSummary.gsgcCash.SetColumnProperty("gvAR","Tax","HeaderFontBold","True")
+gui.frmSummary.gsgcCash.SetColumnProperty("gvAR","Net","HeaderFontBold","True")
+gui.frmSummary.gsgcCash.SetColumnProperty("gvAR","Notes","HeaderFontBold","True")
+'Caption
+gui.frmSummary.gsgcCash.SetColumnProperty("gvAR","PostDate","Caption","Post Date")
+gui.frmSummary.gsgcCash.SetColumnProperty("gvAR","TotalBatchAmt","Caption","Total Batch Amt")
+gui.frmSummary.gsgcCash.SetColumnProperty("gvAR","CashApplied","Caption","Cash Applied")
+gui.frmSummary.gsgcCash.SetColumnProperty("gvAR","DateInvoice","Caption","Date Invoice")
+'Visible
+gui.frmSummary.gsgcCash.SetColumnProperty("gvAR","rtTotalCash","Visible","False")
+'MinWidth 
+gui.frmSummary.gsgcCash.SetColumnProperty("gvAR","PostDate","MinWidth","50")
+gui.frmSummary.gsgcCash.SetColumnProperty("gvAR","DateInvoice","MinWidth","50")
+gui.frmSummary.gsgcCash.SetColumnProperty("gvAR","Notes","MinWidth","60")
+
+'AP
+'Set misc. options
+gui.frmSummary.gsgcPay.setgridviewproperty("gvAP","ReadOnly",True)
+gui.frmSummary.gsgcPay.setgridviewproperty("gvAP","Editable",False)
+'Custom Numeric
+Gui.frmSummary.gsgcPay.SetColumnProperty("gvAP","TotalBatchAmt","DisplayCustomNumeric","#,###,###,##0.00")
+Gui.frmSummary.gsgcPay.SetColumnProperty("gvAP","CashApplied","DisplayCustomNumeric","#,###,###,##0.00")
+Gui.frmSummary.gsgcPay.SetColumnProperty("gvAP","Gross","DisplayCustomNumeric","#,###,###,##0.00")
+Gui.frmSummary.gsgcPay.SetColumnProperty("gvAP","Tax","DisplayCustomNumeric","#,###,###,##0.00")	
+Gui.frmSummary.gsgcPay.SetColumnProperty("gvAP","Net","DisplayCustomNumeric","#,###,###,##0.00")	
+'Custom Date
+gui.frmSummary.gsgcPay.SetColumnProperty("gvAP","DateInvoice","DisplayCustomDatetime","d")
+gui.frmSummary.gsgcPay.SetColumnProperty("gvAP","PostDate","DisplayCustomDatetime","d")
+'Bold
+gui.frmSummary.gsgcPay.SetColumnProperty("gvAP","Batch","HeaderFontBold","True")
+gui.frmSummary.gsgcPay.SetColumnProperty("gvAP","PostDate","HeaderFontBold","True")
+gui.frmSummary.gsgcPay.SetColumnProperty("gvAP","TotalBatchAmt","HeaderFontBold","True")
+gui.frmSummary.gsgcPay.SetColumnProperty("gvAP","CashApplied","HeaderFontBold","True")
+gui.frmSummary.gsgcPay.SetColumnProperty("gvAP","Invoice","HeaderFontBold","True")
+gui.frmSummary.gsgcPay.SetColumnProperty("gvAP","Vendor","HeaderFontBold","True")
+gui.frmSummary.gsgcPay.SetColumnProperty("gvAP","DateInvoice","HeaderFontBold","True")
+gui.frmSummary.gsgcPay.SetColumnProperty("gvAP","Gross","HeaderFontBold","True")
+gui.frmSummary.gsgcPay.SetColumnProperty("gvAP","Tax","HeaderFontBold","True")
+gui.frmSummary.gsgcPay.SetColumnProperty("gvAP","Net","HeaderFontBold","True")
+gui.frmSummary.gsgcPay.SetColumnProperty("gvAP","Notes","HeaderFontBold","True")
+'Caption
+gui.frmSummary.gsgcPay.SetColumnProperty("gvAP","PostDate","Caption","Post Date")
+gui.frmSummary.gsgcPay.SetColumnProperty("gvAP","TotalBatchAmt","Caption","Total Batch Amt")
+gui.frmSummary.gsgcPay.SetColumnProperty("gvAP","CashApplied","Caption","Cash Applied")
+gui.frmSummary.gsgcPay.SetColumnProperty("gvAP","DateInvoice","Caption","Date Invoice")
+'Visible
+gui.frmSummary.gsgcPay.SetColumnProperty("gvAP","rtTotalCash","Visible","False")
+'MinWidth 
+gui.frmSummary.gsgcPay.SetColumnProperty("gvAP","PostDate","MinWidth","50")
+gui.frmSummary.gsgcPay.SetColumnProperty("gvAP","DateInvoice","MinWidth","50")
+gui.frmSummary.gsgcPay.SetColumnProperty("gvAP","Notes","MinWidth","60")
+
+'JE
+'Set misc. options
+gui.frmSummary.gsgcJrnl.setgridviewproperty("gvJE","ReadOnly",True)
+gui.frmSummary.gsgcJrnl.setgridviewproperty("gvJE","Editable",False)
+'Custom Numeric
+Gui.frmSummary.gsgcJrnl.SetColumnProperty("gvJE","TotalBatchAmt","DisplayCustomNumeric","#,###,###,##0.00")
+Gui.frmSummary.gsgcJrnl.SetColumnProperty("gvJE","Gross","DisplayCustomNumeric","#,###,###,##0.00")
+Gui.frmSummary.gsgcJrnl.SetColumnProperty("gvJE","Tax","DisplayCustomNumeric","#,###,###,##0.00")	
+Gui.frmSummary.gsgcJrnl.SetColumnProperty("gvJE","Net","DisplayCustomNumeric","#,###,###,##0.00")	
+'Custom Date
+gui.frmSummary.gsgcJrnl.SetColumnProperty("gvJE","PostDate","DisplayCustomDatetime","d")
+'Bold
+gui.frmSummary.gsgcJrnl.SetColumnProperty("gvJE","Batch","HeaderFontBold","True")
+gui.frmSummary.gsgcJrnl.SetColumnProperty("gvJE","PostDate","HeaderFontBold","True")
+gui.frmSummary.gsgcJrnl.SetColumnProperty("gvJE","TotalBatchAmt","HeaderFontBold","True")
+gui.frmSummary.gsgcJrnl.SetColumnProperty("gvJE","Reference","HeaderFontBold","True")
+gui.frmSummary.gsgcJrnl.SetColumnProperty("gvJE","Description","HeaderFontBold","True")
+gui.frmSummary.gsgcJrnl.SetColumnProperty("gvJE","Gross","HeaderFontBold","True")
+gui.frmSummary.gsgcJrnl.SetColumnProperty("gvJE","Tax","HeaderFontBold","True")
+gui.frmSummary.gsgcJrnl.SetColumnProperty("gvJE","Net","HeaderFontBold","True")
+gui.frmSummary.gsgcJrnl.SetColumnProperty("gvJE","Notes","HeaderFontBold","True")
+'Caption
+gui.frmSummary.gsgcJrnl.SetColumnProperty("gvJE","PostDate","Caption","Post Date")
+gui.frmSummary.gsgcJrnl.SetColumnProperty("gvJE","TotalBatchAmt","Caption","Total Batch Amt")
+'Visible
+gui.frmSummary.gsgcJrnl.SetColumnProperty("gvJE","rtTotalCash","Visible","False")
+'MinWidth 
+gui.frmSummary.gsgcJrnl.SetColumnProperty("gvJE","PostDate","MinWidth","50")
+gui.frmSummary.gsgcJrnl.SetColumnProperty("gvJE","Notes","MinWidth","60")
+	
+Program.Sub.setProperties.End
+Program.Sub.getJE.Start
+v.Local.j.Declare(long)
+v.Local.sRet.Declare(string)
+v.Local.sTaxInRet.Declare(string)
+v.Local.fTaxInRet.Declare(Float)
+v.Local.sTaxOtRet.Declare(string)
+v.Local.fTaxOtRet.Declare(Float)
+v.Local.fTaxTotal.Declare(float)
+v.Local.fNet.Declare(float)
+v.Local.fGross.Declare(Float)
+v.local.sRows.declare(string)
+v.Local.ssql.Declare(string)
+
+'create a data table for journal entries, reference to be the invoice, description to be the vendor/customer.  Select journal by bank account from GL_JOURNAL_DTL, then select by either of the input or output tax codes, 
+'if there is a value, bring that in.  Get the rest by subtracting the Cash Amount - Tax to get the Gross.  Details of the gross do not matter as they are going to multiple accounts.
+
+'Start with Active
+F.Intrinsic.String.Build("SELECT Reference, Description, Post_Date_Sql, AMOUNT_CMPNY as 'AMT_TRANSACTION', BATCH FROM GL_JOURNAL_DTL WHERE BATCH='{0}' AND GL_NUMBER='{1}'",v.Args.Batch,V.Args.Bank,v.Local.ssql)
+f.ODBC.Connection!con.executeandreturn(v.Local.ssql,v.Local.sRet)
+f.Intrinsic.String.Split(v.Local.sRet,"*!*",v.Local.sret)
+f.Intrinsic.Control.If(v.Local.sRet.Trim,<>,"")
+	v.Local.fNet.Set(V.Args.TotalBatchAmt)
+	f.Intrinsic.String.Build("SELECT ifnull(Sum(AMOUNT_CMPNY),0) as 'AMT_TRANSACTION' FROM GL_JOURNAL_DTL WHERE BATCH='{0}' AND GL_NUMBER='{1}'",v.Args.Batch,V.Args.GSTIn,v.Local.ssql)
+	F.ODBC.Connection!con.EXECUTEandreturn(v.Local.ssql,v.Local.fTaxInRet)
+	f.Intrinsic.String.Build("SELECT ifnull(Sum(AMOUNT_CMPNY),0) as 'AMT_TRANSACTION' FROM GL_JOURNAL_DTL WHERE BATCH='{0}' AND GL_NUMBER='{1}'",v.Args.Batch,V.Args.GSTOt,v.Local.ssql)
+	F.ODBC.Connection!con.EXECUTEandreturn(v.Local.ssql,v.Local.fTaxOtRet)
+	f.Intrinsic.Math.Add(v.Local.fTaxInRet,v.Local.fTaxOtRet,v.Local.fTaxTotal)
+	f.Intrinsic.Math.Add(v.Local.fNet,v.Local.fTaxTotal,v.Local.fGross)
+	f.Intrinsic.Math.Mult(v.Local.fTaxTotal,-1,v.Local.fTaxTotal)
+	f.Data.DataTable.AddRow("dtJEItems","Batch",v.Args.Batch,"PostDate",v.Local.sRet(2),"TotalBatchAmt",V.Args.TotalBatchAmt,"Reference",v.Local.sRet(0),"Description",v.Local.sRet(1),"Gross",v.Local.fGross,"Tax",v.Local.fTaxTotal,"Net",v.Local.fNet)
+f.Intrinsic.Control.EndIf
+f.Data.DataTable.RunningTotal("dtJEItems","TotalBatchAmt",0,"+","rtTotalCash")
+Program.Sub.getJE.End
+
+Program.Sub.getAP.Start
+v.Local.j.Declare(long)
+v.Local.sRet.Declare(string)
+v.local.sRows.declare(string)
+v.Local.ssql.Declare(string)
+'Run two queries to get the invoices and tax detail
+
+'Start with History
+F.Intrinsic.String.Build("SELECT Invoice, Date_invoice, AMT_TRANSACTION*-1 as 'AMT_TRANSACTION',batch_num FROM V_AP_HIST WHERE BATCH_NUM='{0}'",v.Args.Batch,v.Local.ssql)
+f.Intrinsic.Control.If(v.DataTable.dtAPO.Exists)
+	f.Data.DataTable.Close("dtAPO")
+f.Intrinsic.Control.EndIf
+F.Data.DataTable.CreateFromSQL("dtAPO","con",v.Local.ssql,true)
+f.Intrinsic.Control.For(v.Local.j,0,v.DataTable.dtAPO.RowCount--,1)
+
+	f.Intrinsic.String.Build("SELECT Invoice, Vendor_ID, INVC_DATE_FORMAT, Sum(EXT_COST) as 'Gross', Sum(Tax_Amount) as 'Tax', SUM(EXT_COST) + SUM(TAX_AMOUNT) as 'Net'  FROM AP_INV_TAX_DTL_H WHERE INVOICE='{0}' And Vendor_ID='{1}' Group by Invoice, Vendor_ID, Invc_Date_Format",v.DataTable.dtAPO(v.Local.j).invoice!Fieldvaltrim,v.Local.ssql)
+	f.ODBC.Connection!con.executeandreturn(v.Local.ssql,v.Local.sret)
+	f.Intrinsic.String.Split(v.Local.sret,"*!*",v.Local.sret)
+	F.Intrinsic.Control.If(v.Local.sRet.Trim,<>,"")
+		f.Data.DataTable.AddRow("dtAPItems","CashApplied",v.DataTable.dtAPO(v.Local.j).AMT_TRANSACTION!FIELDVAL,"Batch",v.Args.Batch,"PostDate",v.Args.PostDate,"TotalBatchAmt",V.Args.TotalBatchAmt,"Invoice",v.Local.sRet(0),"Vendor",v.local.sRet(1),"DateInvoice",v.Local.sRet(2),"Gross",v.Local.sRet(3),"Tax",v.Local.sRet(4),"Net",v.Local.sRet(5))
+	f.Intrinsic.Control.Else
+		F.Data.DataTable.AddRow("dtAPItems","CashApplied",v.DataTable.dtAPO(v.Local.j).AMT_TRANSACTION!FIELDVAL,"Batch",v.Args.Batch,"PostDate",v.Args.PostDate,"TotalBatchAmt",V.Args.TotalBatchAmt)
+	f.Intrinsic.Control.EndIf
+f.Intrinsic.Control.Next(v.Local.j)
+
+'Next with open items
+v.Local.j.Set(0)
+F.Intrinsic.String.Build("SELECT Invoice, Date_invoice,  AMT_TRANSACTION*-1 as 'AMT_TRANSACTION',Vendor,batch_num FROM V_AP_OPEN_ITEMS WHERE BATCH_NUM='{0}'",v.Args.Batch,v.Local.ssql)
+f.Intrinsic.Control.If(v.DataTable.dtAPO.Exists)
+	f.Data.DataTable.Close("dtAPO")
+f.Intrinsic.Control.EndIf
+F.Data.DataTable.CreateFromSQL("dtAPO","con",v.Local.ssql,true)
+f.Intrinsic.Control.For(v.Local.j,0,v.DataTable.dtAPO.RowCount--,1)
+	f.Intrinsic.String.Build("SELECT Invoice, Vendor_ID, INVC_DATE_FORMAT, Sum(EXT_COST) as 'Gross', Sum(Tax_Amount) as 'Tax', SUM(EXT_COST) + SUM(TAX_AMOUNT) as 'Net'  FROM AP_INV_TAX_DTL WHERE INVOICE='{0}' And Vendor_ID='{1}' Group by Invoice, Vendor_ID, Invc_Date_Format",v.DataTable.dtAPO(v.Local.j).invoice!Fieldvaltrim,v.DataTable.dtAPO(v.Local.j).Vendor!Fieldvaltrim,v.Local.ssql)
+	f.ODBC.Connection!con.executeandreturn(v.Local.ssql,v.Local.sret)
+	F.Intrinsic.String.Split(v.Local.sret,"#$#",v.Local.srows)
+	f.Intrinsic.Control.If(v.Local.srows.UBound,=,0)
+		f.Intrinsic.String.Split(v.Local.sret,"*!*",v.Local.sret)
+		F.Intrinsic.Control.If(v.Local.sRet.Trim,<>,"")
+			f.Data.DataTable.AddRow("dtAPItems","CashApplied",v.DataTable.dtAPO(v.Local.j).AMT_TRANSACTION!FIELDVAL,"Batch",v.Args.Batch,"PostDate",v.Args.PostDate,"TotalBatchAmt",V.Args.TotalBatchAmt,"Invoice",v.Local.sRet(0),"Vendor",v.local.sRet(1),"DateInvoice",v.Local.sRet(2),"Gross",v.Local.sRet(3),"Tax",v.Local.sRet(4),"Net",v.Local.sRet(5))
+		F.Intrinsic.Control.Else
+			'No Tax invoice record found
+			f.Intrinsic.String.Build("Select invoice, Vendor, Date_Invoice, Invc_Taxable_Amt as 'Gross', Invc_tax_amt as 'Tax', Invc_Taxable_Amt + Invc_tax_amt as 'Net' FROM V_AP_OPEN_ITEMS WHERE Invoice='{0}' and Vendor='{1}' And Batch_Code='10'",v.DataTable.dtAPO(v.Local.j).invoice!Fieldvaltrim,v.DataTable.dtAPO(v.Local.j).Vendor!Fieldvaltrim,v.Local.ssql)
+			f.ODBC.Connection!con.executeandreturn(v.Local.ssql,v.Local.sret)
+			f.Intrinsic.String.Split(v.Local.sRet,"*!*",v.Local.sret)
+			F.Data.DataTable.AddRow("dtAPItems","Notes","WARNING: No Tax Invoice record found on file.  Had to investigate AP Open Items.","CashApplied",v.DataTable.dtAPO(v.Local.j).AMT_TRANSACTION!FIELDVAL,"Batch",v.Args.Batch,"PostDate",v.Args.PostDate,"TotalBatchAmt",V.Args.TotalBatchAmt,"Invoice",v.Local.sRet(0),"Vendor",v.local.sRet(1),"DateInvoice",v.Local.sRet(2),"Gross",v.Local.sRet(3),"Tax",v.Local.sRet(4),"Net",v.Local.sRet(5))
+		f.Intrinsic.Control.EndIf
+	f.Intrinsic.Control.Else
+		'duplicate invoices on file
+		f.Intrinsic.String.Build("SELECT Invoice, Vendor_ID, INVC_DATE_FORMAT, EXT_COST as 'Gross', Tax_Amount as 'Tax', EXT_COST + TAX_AMOUNT as 'Net'  FROM AP_INV_TAX_DTL WHERE INVOICE='{0}' And Vendor_ID='{1}' and (net*-1)='{2}'",v.DataTable.dtAPO(v.Local.j).invoice!Fieldvaltrim,v.DataTable.dtAPO(v.Local.j).Vendor!Fieldvaltrim,v.DataTable.dtAPO(v.Local.j).AMT_TRANSACTION!FIELDVAL,v.Local.ssql)
+		f.ODBC.Connection!con.executeandreturn(v.Local.ssql,v.Local.sret)
+		f.Intrinsic.String.Split(v.Local.sret,"*!*",v.Local.sret)
+		f.Data.DataTable.AddRow("dtAPItems","Notes","WARNING: Duplicate invoices on file.  Possibly a partial pay + debit.","CashApplied",v.DataTable.dtAPO(v.Local.j).AMT_TRANSACTION!FIELDVAL,"Batch",v.Args.Batch,"PostDate",v.Args.PostDate,"TotalBatchAmt",V.Args.TotalBatchAmt,"Invoice",v.Local.sRet(0),"Vendor",v.local.sRet(1),"DateInvoice",v.Local.sRet(2),"Gross",v.Local.sRet(3),"Tax",v.Local.sRet(4),"Net",v.Local.sRet(5))
+	f.Intrinsic.Control.EndIf
+f.Intrinsic.Control.Next(v.Local.j)
+f.Data.DataTable.RunningTotal("dtAPItems","CashApplied",0,"+","rtTotalCash")
+Program.Sub.getAP.End
+
+Program.Sub.getAR.Start
+v.Local.j.Declare(long)
+v.Local.sRet.Declare(string)
+v.Local.ssql.Declare(string)
+'Run two queries to get the invoices and tax detail
+'Start with History
+F.Intrinsic.String.Build("SELECT Invoice, Date_invoice, AMT_INVOICE*-1 as 'AMT_INVOICE' FROM V_AR_HISTORY WHERE BATCH_NUM='{0}'",v.Args.Batch,v.Local.ssql)
+f.Intrinsic.Control.If(v.DataTable.dtARO.Exists)
+	f.Data.DataTable.Close("dtARO")
+f.Intrinsic.Control.EndIf
+F.Data.DataTable.CreateFromSQL("dtARO","con",v.Local.ssql,true)
+f.Intrinsic.Control.For(v.Local.j,0,v.DataTable.dtARO.RowCount--,1)
+	f.Intrinsic.String.Build("SELECT Batch_Num,Invoice, Customer, Date_invoice, Amt_Invoice-Tax_Amt_Co_Curr as 'Gross', Tax_Amt_Co_Curr, Amt_Invoice as 'Net Amt' FROM V_AR_HISTORY WHERE Invoice='{0}' and BATCH_CODE='10'",v.DataTable.dtARO(v.Local.j).invoice!Fieldvaltrim,v.Local.ssql)
+	f.ODBC.Connection!con.executeandreturn(v.Local.ssql,v.Local.sret)
+	f.Intrinsic.String.Split(v.Local.sret,"*!*",v.Local.sret)
+	F.Intrinsic.Control.If(v.Local.sRet.Trim,<>,"")
+		f.Data.DataTable.AddRow("dtARItems","CashApplied",v.DataTable.dtARO(v.Local.j).AMT_INVOICE!FIELDVAL,"Batch",v.Args.Batch,"PostDate",v.Args.PostDate,"TotalBatchAmt",V.Args.TotalBatchAmt,"Invoice",v.Local.sRet(1),"Customer",v.local.sRet(2),"DateInvoice",v.Local.sRet(3),"Gross",v.Local.sRet(4),"Tax",v.Local.sRet(5),"Net",v.Local.sRet(6))
+	f.Intrinsic.Control.Else
+		F.Data.DataTable.AddRow("dtARItems","CashApplied",v.DataTable.dtARO(v.Local.j).AMT_INVOICE!FIELDVAL,"Batch",v.Args.Batch,"PostDate",v.Args.PostDate,"TotalBatchAmt",V.Args.TotalBatchAmt)
+	f.Intrinsic.Control.EndIf
+f.Intrinsic.Control.Next(v.Local.j)
+'Next with open items
+v.Local.j.Set(0)
+F.Intrinsic.String.Build("SELECT Invoice, Date_invoice, AMT_INVOICE*-1 as 'AMT_INVOICE' FROM V_AR_OPEN_ITEMS WHERE BATCH_NUM='{0}'",v.Args.Batch,v.Local.ssql)
+f.Intrinsic.Control.If(v.DataTable.dtARO.Exists)
+	f.Data.DataTable.Close("dtARO")
+f.Intrinsic.Control.EndIf
+F.Data.DataTable.CreateFromSQL("dtARO","con",v.Local.ssql,true)
+f.Intrinsic.Control.For(v.Local.j,0,v.DataTable.dtARO.RowCount--,1)
+	f.Intrinsic.String.Build("SELECT Batch_Num,Invoice, Customer, Date_invoice, Amt_Invoice-Tax_Amt_Co_Curr as 'Gross', Tax_Amt_Co_Curr, Amt_Invoice as 'Net Amt' FROM V_AR_OPEN_ITEMS WHERE Invoice='{0}' and BATCH_CODE='10'",v.DataTable.dtARO(v.Local.j).invoice!Fieldvaltrim,v.Local.ssql)
+	f.ODBC.Connection!con.executeandreturn(v.Local.ssql,v.Local.sret)
+	f.Intrinsic.String.Split(v.Local.sret,"*!*",v.Local.sret)
+	F.Intrinsic.Control.If(v.Local.sRet.Trim,<>,"")
+		f.Data.DataTable.AddRow("dtARItems","CashApplied",v.DataTable.dtARO(v.Local.j).AMT_INVOICE!FIELDVAL,"Batch",v.Args.Batch,"PostDate",v.Args.PostDate,"TotalBatchAmt",V.Args.TotalBatchAmt,"Invoice",v.Local.sRet(1),"Customer",v.local.sRet(2),"DateInvoice",v.Local.sRet(3),"Gross",v.Local.sRet(4),"Tax",v.Local.sRet(5),"Net",v.Local.sRet(6))
+	F.Intrinsic.Control.Else
+		f.Intrinsic.String.Build("SELECT Batch_Num,Invoice, Customer, Date_invoice, Amt_Invoice-Tax_Amt_Co_Curr as 'Gross', Tax_Amt_Co_Curr, Amt_Invoice as 'Net Amt' FROM V_AR_HISTORY WHERE Invoice='{0}' and BATCH_CODE='10'",v.DataTable.dtARO(v.Local.j).invoice!Fieldvaltrim,v.Local.ssql)
+		f.ODBC.Connection!con.executeandreturn(v.Local.ssql,v.Local.sret)
+		f.Intrinsic.String.Split(v.Local.sret,"*!*",v.Local.sret)
+		F.Intrinsic.Control.If(v.Local.sRet.Trim,<>,"")
+			F.Data.DataTable.AddRow("dtARItems","Notes","No Invoice found on active records and cash receipt active, but searched and found in history","CashApplied",v.DataTable.dtARO(v.Local.j).AMT_INVOICE!FIELDVAL,"Batch",v.Args.Batch,"PostDate",v.Args.PostDate,"TotalBatchAmt",V.Args.TotalBatchAmt,"Invoice",v.Local.sRet(1),"Customer",v.local.sRet(2),"DateInvoice",v.Local.sRet(3),"Gross",v.Local.sRet(4),"Tax",v.Local.sRet(5),"Net",v.Local.sRet(6))
+		f.Intrinsic.Control.else
+			F.Data.DataTable.AddRow("dtARItems","Notes","No Record found.","CashApplied",v.DataTable.dtARO(v.Local.j).AMT_INVOICE!FIELDVAL,"Batch",v.Args.Batch,"PostDate",v.Args.PostDate,"TotalBatchAmt",V.Args.TotalBatchAmt)
+		f.Intrinsic.Control.EndIf
+	f.Intrinsic.Control.EndIf
+f.Intrinsic.Control.Next(v.Local.j)
+f.Data.DataTable.RunningTotal("dtARItems","CashApplied",0,"+","rtTotalCash")
+Program.Sub.getAR.End
+
+Program.Sub.cmdBrwGO_Click.Start
+V.Local.sRet.Declare(String)
+V.Local.sTitles.Declare(String)
+V.Local.iWidths.Declare(String)
+V.Local.ssql.Declare(String)
+
+F.intrinsic.string.split("GL*!*Description","*!*",V.local.sTitles)
+F.intrinsic.string.split("2000*!*3000","*!*",V.local.iWidths)
+
+V.Local.ssql.set("select GL_ACCOUNT, DESCR from V_GL_MASTER")
+
+F.intrinsic.ui.browser("Select a GL Account",con,v.Local.ssql,V.local.sTitles,V.local.iWidths,V.local.sRet)
+
+F.intrinsic.control.if(V.local.sRet,"=","***CANCEL***")
+F.intrinsic.control.else
+	F.intrinsic.string.split(V.local.sRet,"*!*",V.local.sRet)
+	gui.frmCash.txtGSTOT.Text(v.Local.sRet(0))
+F.Intrinsic.Control.endif
+Program.Sub.cmdBrwGO_Click.End
+
+Program.Sub.cmdBrwGI_Click.Start
+V.Local.sRet.Declare(String)
+V.Local.sTitles.Declare(String)
+V.Local.iWidths.Declare(String)
+V.Local.ssql.Declare(String)
+
+F.intrinsic.string.split("GL*!*Description","*!*",V.local.sTitles)
+F.intrinsic.string.split("2000*!*3000","*!*",V.local.iWidths)
+
+V.Local.ssql.set("select GL_ACCOUNT, DESCR from V_GL_MASTER")
+
+F.intrinsic.ui.browser("Select a GL Account",con,v.Local.ssql,V.local.sTitles,V.local.iWidths,V.local.sRet)
+
+F.intrinsic.control.if(V.local.sRet,"=","***CANCEL***")
+F.intrinsic.control.else
+	F.intrinsic.string.split(V.local.sRet,"*!*",V.local.sRet)
+	gui.frmCash.txtGSTIN.Text(v.Local.sRet(0))
+F.Intrinsic.Control.endif
+Program.Sub.cmdBrwGI_Click.End
+
+Program.Sub.cmdBrwGL_Click.Start
+V.Local.sRet.Declare(String)
+V.Local.sTitles.Declare(String)
+V.Local.iWidths.Declare(String)
+V.Local.ssql.Declare(String)
+
+F.intrinsic.string.split("GL*!*Description","*!*",V.local.sTitles)
+F.intrinsic.string.split("2000*!*3000","*!*",V.local.iWidths)
+
+V.Local.ssql.set("select GL_ACCOUNT, DESCR from V_GL_MASTER")
+
+F.intrinsic.ui.browser("Select a GL Account",con,v.Local.ssql,V.local.sTitles,V.local.iWidths,V.local.sRet)
+
+F.intrinsic.control.if(V.local.sRet,"=","***CANCEL***")
+F.intrinsic.control.else
+	F.intrinsic.string.split(V.local.sRet,"*!*",V.local.sRet)
+	gui.frmCash.txtGL.Text(v.Local.sRet(0))
+F.Intrinsic.Control.endif
+Program.Sub.cmdBrwGL_Click.End
+
+Program.Sub.frmCash_UnLoad.Start
+f.ODBC.Connection!con.Close
+f.Intrinsic.Control.End
+Program.Sub.frmCash_UnLoad.End
+
+Program.Sub.frmSummary_UnLoad.Start
+f.ODBC.Connection!con.Close
+f.Intrinsic.Control.End
+Program.Sub.frmSummary_UnLoad.End
+
+Program.Sub.cmdExportAll_Click.Start
+V.Local.sFileExport.Declare(string)
+V.Local.bExcel.Declare(boolean)
+V.Local.bFileLocked.Declare(boolean)
+V.Local.sMsg.Declare(string)
+v.Local.sDate.Declare(string)
+f.Intrinsic.String.Format(v.Ambient.Now,"YYYYMMDD HHNNSS",v.Local.sDate)
+F.Automation.MSExcel.CheckPresence(V.Local.bExcel)
+f.Intrinsic.Control.If(v.Local.bExcel)
+	'AR
+	F.Intrinsic.String.Build("{0}\GAB_5280_AR_{1}_Export.xlsx",V.Caller.LocalGssTempDir,v.Local.sDate,V.Local.sFileExport)
+	F.Intrinsic.File.IsFileLocked(V.Local.sFileExport,V.Local.bFileLocked)
+	F.Intrinsic.Control.If(V.Local.bFileLocked)
+		F.Intrinsic.String.Build("File is already open. Please close and export again.{0}File: {1}",V.Ambient.NewLine,V.Local.sFileExport,V.Local.sMsg)
+		F.Intrinsic.UI.Msgbox(V.Local.sMsg,"File In Use")
+	F.Intrinsic.Control.Else
+		GUI.frmSummary.gsgcCash.Export(V.Local.sFileExport,"xlsx")
+		F.Intrinsic.Task.ShellExec(0,"",V.Local.sFileExport,"","",1)
+	F.Intrinsic.Control.EndIf
+	'AP
+		F.Intrinsic.String.Build("{0}\GAB_5280_AP_{1}_Export.xlsx",V.Caller.LocalGssTempDir,v.Local.sDate,V.Local.sFileExport)
+	F.Intrinsic.File.IsFileLocked(V.Local.sFileExport,V.Local.bFileLocked)
+	F.Intrinsic.Control.If(V.Local.bFileLocked)
+		F.Intrinsic.String.Build("File is already open. Please close and export again.{0}File: {1}",V.Ambient.NewLine,V.Local.sFileExport,V.Local.sMsg)
+		F.Intrinsic.UI.Msgbox(V.Local.sMsg,"File In Use")
+	F.Intrinsic.Control.Else
+		GUI.frmSummary.gsgcPay.Export(V.Local.sFileExport,"xlsx")
+		F.Intrinsic.Task.ShellExec(0,"",V.Local.sFileExport,"","",1)
+	F.Intrinsic.Control.EndIf
+	'JE
+		F.Intrinsic.String.Build("{0}\GAB_5280_JE_{1}_Export.xlsx",V.Caller.LocalGssTempDir,v.Local.sDate,V.Local.sFileExport)
+	F.Intrinsic.File.IsFileLocked(V.Local.sFileExport,V.Local.bFileLocked)
+	F.Intrinsic.Control.If(V.Local.bFileLocked)
+		F.Intrinsic.String.Build("File is already open. Please close and export again.{0}File: {1}",V.Ambient.NewLine,V.Local.sFileExport,V.Local.sMsg)
+		F.Intrinsic.UI.Msgbox(V.Local.sMsg,"File In Use")
+	F.Intrinsic.Control.Else
+		GUI.frmSummary.gsgcJrnl.Export(V.Local.sFileExport,"xlsx")
+		F.Intrinsic.Task.ShellExec(0,"",V.Local.sFileExport,"","",1)
+	F.Intrinsic.Control.EndIf
+f.Intrinsic.Control.Else
+	f.Intrinsic.UI.Msgbox("Excel Not Found.")
+f.Intrinsic.Control.EndIf
+Program.Sub.cmdExportAll_Click.End
+
+Program.Sub.cmdSave_Click.Start
+v.Local.sCacheFile.Declare(string)
+v.Local.bCacheFile.Declare(Boolean)
+v.Local.sGL.Declare(string)
+v.Local.sGSTIn.Declare(string)
+v.Local.sGSTOt.Declare(string)
+v.Local.sGL.Set(v.Screen.frmCash!txtGL.text)
+v.Local.sGSTIn.Set(v.Screen.frmCash!txtGSTIN.text)
+v.Local.sGSTOt.Set(v.Screen.frmCash!txtGSTOT.text)
+f.Intrinsic.String.Concat(v.Caller.GasDir,"\",v.Caller.CompanyCode,"_",v.Caller.User,"_GST_Cash.xml",v.Local.sCacheFile)
+f.Intrinsic.Control.If(v.DataTable.dtSet.Exists)
+	f.Data.DataTable.Close("dtSet")
+f.Intrinsic.Control.EndIf
+f.Data.DataTable.Create("dtSet")
+f.Data.DataTable.AddColumn("dtSet","Bank","String")
+f.Data.DataTable.AddColumn("dtSet","TaxI","String")
+f.Data.DataTable.AddColumn("dtSet","TaxO","String")
+f.Data.DataTable.AddRow("dtSet","Bank",v.Local.sGL.Trim,"TaxI",v.Local.sGSTIn.Trim,"TaxO",v.Local.sGSTOt.Trim)
+f.Data.DataTable.savetoxml("dtSet",0,true,v.Local.sCacheFile)	
+Program.Sub.cmdSave_Click.End
